@@ -6,11 +6,15 @@ const COURSES = [
 ]
 
 const server = http.createServer((req, res) => {
-    res.setHeader('Content-type' , 'application/json')
+    res.writeHead(404, {
+        'Content-type' : 'application/json',
+        'X-Powered-By' : 'Node.js'
+    })
 
     res.end(JSON.stringify({
-        success : true,
-        data : COURSES
+        success : false,
+        error : 'NOT FOUND',  
+        data : null
     }));
 })
 
