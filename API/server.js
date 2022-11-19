@@ -52,6 +52,16 @@ app.post('/api/courses/add', (req, res) => {
     }));
 });
 
+app.put('/api/courses/edit/:id', (req, res) => {
+    const COURSE = COURSES.find(COURSES => COURSES.id === parseInt(req.params.id))
+    COURSE.name = req.body.name;
+    res.send(JSON.stringify({
+        success : true,
+        notice : "Bạn đã cập nhật thành công",
+        data :COURSES
+    })); 
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port  ${PORT}`));
 //server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
