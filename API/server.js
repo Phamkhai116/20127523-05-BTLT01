@@ -62,6 +62,17 @@ app.put('/api/courses/edit/:id', (req, res) => {
     })); 
 });
 
+app.delete('/api/courses/delete/:id', (req, res) => {
+    const COURSE = COURSES.find(COURSES => COURSES.id === parseInt(req.params.id))
+    let index = COURSES.indexOf(COURSE);
+    COURSES.splice(index, 1);
+    res.send(JSON.stringify({
+        success : true,
+        notice : "Bạn đã xóa thành công",
+        data :COURSES
+    })); 
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port  ${PORT}`));
 //server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
